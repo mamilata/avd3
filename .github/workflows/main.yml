@@ -1,1 +1,56 @@
+name: workflow1
+on: 
+   push:
+        branches:
+        - main
 
+job:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v2
+        - name: print message
+          run: echo 'job1'
+    job2:
+        needs: job1
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v2
+        - name: print message
+          run: echo 'job2 complete'
+    job3:
+        needs: job1
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v2
+        - name: print message
+          run: echo 'job3'
+    job4:
+        needs: job2
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v2
+        - name: print message
+          run: echo 'job4'
+    job5:
+        needs: job3
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v2
+        - name: print message
+          run: echo 'job5'
+    job6:
+        needs: [job4,job5]
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v2
+        - name: print message
+          run: echo 'job6'
+    
+       
